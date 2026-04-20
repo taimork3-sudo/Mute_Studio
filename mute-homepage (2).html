@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUTE. — just fashion.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Barlow+Condensed:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0e0e0e;--chalk:#f4f2ee;--bone:#e8e4dc;--acid:#c8f542;--rust:#c84b2f;--stone:#b8b4aa;--smoke:#7a7672;--warm:#f0e8d8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow Condensed',sans-serif;background:var(--chalk);color:var(--ink);overflow-x:hidden;cursor:crosshair}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* CURSOR */
+.cursor{width:12px;height:12px;background:var(--acid);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:transform 0.1s;mix-blend-mode:multiply}
+
+/* ANNOUNCE */
+.announce{background:var(--ink);color:var(--acid);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;padding:9px 0;overflow:hidden;white-space:nowrap}
+.announce-track{display:inline-flex;gap:2.5rem;animation:ticker 20s linear infinite}
+.announce-track s{color:#333;text-decoration:line-through}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* NAV */
+nav{background:var(--chalk);border-bottom:2px solid var(--ink);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:0.08em;color:var(--ink);text-decoration:none;line-height:1}
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links li a{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:var(--smoke);text-decoration:none;padding:0 1.25rem;border-right:1px solid var(--stone);line-height:60px;display:block;transition:background 0.15s,color 0.15s}
+.nav-links li:first-child a{border-left:1px solid var(--stone)}
+.nav-links li a:hover,.nav-links li a.active{background:var(--ink);color:var(--acid)}
+.nav-right{display:flex;gap:0}
+.nav-right a{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--smoke);text-decoration:none;padding:0 1rem;border-left:1px solid var(--stone);line-height:60px;display:block;transition:color 0.15s}
+.nav-right a:hover{color:var(--ink)}
+.nav-cart{background:var(--acid);color:var(--ink) !important;font-weight:500}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 520px;min-height:88vh;border-bottom:2px solid var(--ink);position:relative}
+.hero-left{display:flex;flex-direction:column;justify-content:space-between;padding:2.5rem 2rem;border-right:2px solid var(--ink);position:relative;overflow:hidden}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--smoke);text-transform:uppercase;border-bottom:1px solid var(--stone);padding-bottom:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(100px,14vw,200px);line-height:0.88;letter-spacing:0.02em;color:var(--ink);position:relative;z-index:2}
+.hero-h1 .strike{text-decoration:line-through;color:var(--stone)}
+.hero-h1 .green{color:var(--acid);-webkit-text-stroke:2px var(--ink)}
+.hero-illustration{position:absolute;right:-20px;top:50%;transform:translateY(-50%);opacity:0.06;z-index:1}
+.hero-bottom{display:grid;grid-template-columns:1fr 1fr;gap:1rem;border-top:1px solid var(--stone);padding-top:1.5rem;margin-top:1.5rem}
+.hero-sub{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:300;color:var(--smoke);line-height:1.5;max-width:280px}
+.hero-ctas{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.btn-acid{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:700;padding:12px 28px;background:var(--acid);color:var(--ink);border:2px solid var(--ink);text-decoration:none;display:inline-block;transition:background 0.15s;white-space:nowrap}
+.btn-acid:hover{background:var(--ink);color:var(--acid)}
+.btn-outline{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;padding:12px 28px;background:transparent;color:var(--ink);border:2px solid var(--ink);text-decoration:none;display:inline-block;transition:background 0.15s;white-space:nowrap}
+.btn-outline:hover{background:var(--ink);color:var(--chalk)}
+.hero-right{display:flex;flex-direction:column;position:relative}
+.hero-img-main{flex:1;overflow:hidden;position:relative;min-height:400px}
+.hero-img-main img{object-position:top center}
+.hero-img-tag{position:absolute;bottom:1rem;left:1rem;background:var(--acid);color:var(--ink);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;padding:5px 10px;border:1px solid var(--ink)}
+.hero-stat-strip{background:var(--ink);color:var(--chalk);display:flex;border-top:2px solid var(--ink)}
+.stat-box{flex:1;padding:1rem;border-right:1px solid #333;text-align:center}
+.stat-box:last-child{border-right:none}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:0.04em;line-height:1;color:var(--acid)}
+.stat-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;color:var(--stone);text-transform:uppercase;margin-top:2px}
+.hero-counter-badge{position:absolute;top:1.5rem;right:-1px;background:var(--rust);color:var(--chalk);font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:0.1em;padding:4px 12px;border:1px solid var(--ink);z-index:5}
+
+/* MARQUEE DIVIDER */
+.marquee-div{background:var(--acid);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);overflow:hidden;padding:10px 0}
+.marquee-inner{display:inline-flex;gap:3rem;animation:ticker 15s linear infinite;white-space:nowrap}
+.marquee-inner span{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.06em;color:var(--ink)}
+.marquee-inner .dot{color:var(--rust)}
+
+/* COLLECTION */
+.collection{padding:0;border-bottom:2px solid var(--ink)}
+.col-header{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--ink)}
+.col-header-left{padding:2rem;border-right:2px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between}
+.col-header-right{padding:2rem;display:flex;align-items:flex-end;justify-content:space-between}
+.big-label{font-family:'Bebas Neue',sans-serif;font-size:clamp(50px,7vw,90px);line-height:0.9;letter-spacing:0.03em;color:var(--ink)}
+.col-meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:var(--smoke);text-transform:uppercase;line-height:1.8}
+.col-meta s{color:var(--stone)}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.product-card{border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);position:relative;overflow:hidden;cursor:pointer}
+.product-card:last-child,.product-card:nth-child(3){border-right:none}
+.product-card:nth-child(4),.product-card:nth-child(5),.product-card:nth-child(6){border-bottom:none}
+.product-img-wrap{aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--bone)}
+.product-img-wrap img{transition:transform 0.6s cubic-bezier(.25,.46,.45,.94)}
+.product-card:hover .product-img-wrap img{transform:scale(1.07)}
+.product-overlay{position:absolute;inset:0;background:var(--ink);opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center}
+.product-card:hover .product-overlay{opacity:0.7}
+.overlay-btn{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.1em;color:var(--acid);border:2px solid var(--acid);padding:10px 24px;opacity:0;transform:translateY(10px);transition:opacity 0.3s 0.05s,transform 0.3s 0.05s}
+.product-card:hover .overlay-btn{opacity:1;transform:translateY(0)}
+.product-badge-wrap{position:absolute;top:12px;left:12px;z-index:3;display:flex;flex-direction:column;gap:4px}
+.badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--ink)}
+.badge-new{background:var(--acid);color:var(--ink)}
+.badge-low{background:var(--rust);color:#fff}
+.badge-idx{position:absolute;top:12px;right:12px;font-family:'Bebas Neue',sans-serif;font-size:44px;color:rgba(255,255,255,0.18);line-height:1;z-index:2}
+.product-info{padding:14px 16px;border-top:2px solid var(--ink);background:var(--chalk);display:flex;justify-content:space-between;align-items:baseline}
+.product-name-big{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.04em;color:var(--ink)}
+.product-price-big{font-family:'DM Mono',monospace;font-size:13px;color:var(--smoke);font-weight:500}
+.product-card-wide{grid-column:span 2}
+.product-card-wide .product-img-wrap{aspect-ratio:16/9}
+
+/* ILLUSTRATION ROW */
+.illus-row{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--ink)}
+.illus-cell{border-right:2px solid var(--ink);padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem;background:var(--bone)}
+.illus-cell:last-child{border-right:none;background:var(--ink)}
+.illus-cell:last-child .illus-caption{color:var(--chalk)}
+.illus-caption{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--smoke);text-align:center}
+.illus-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:0.06em;color:var(--ink);text-align:center}
+.illus-cell:last-child .illus-title{color:var(--acid)}
+
+/* STORY SECTION */
+.story-section{display:grid;grid-template-columns:380px 1fr 320px;border-bottom:2px solid var(--ink);min-height:560px}
+.story-left{border-right:2px solid var(--ink);display:flex;flex-direction:column}
+.story-img-top{flex:1;overflow:hidden;min-height:300px;border-bottom:2px solid var(--ink);position:relative}
+.story-img-top img{object-position:top}
+.story-img-caption{padding:1rem;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--smoke);text-transform:uppercase}
+.story-mid{padding:3rem 2.5rem;display:flex;flex-direction:column;justify-content:center;border-right:2px solid var(--ink);position:relative;overflow:hidden}
+.story-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,8vw,110px);line-height:0.88;letter-spacing:0.02em;color:var(--ink);margin-bottom:1.5rem}
+.story-big .italic{font-family:'DM Serif Display',serif;font-style:italic;color:var(--rust)}
+.story-body-txt{font-size:15px;font-weight:300;color:var(--smoke);line-height:1.75;margin-bottom:1rem;max-width:440px}
+.story-body-txt s{color:var(--stone)}
+.story-watermark{position:absolute;bottom:-20px;right:-10px;font-family:'Bebas Neue',sans-serif;font-size:180px;color:var(--bone);line-height:1;pointer-events:none;z-index:0}
+.story-right{display:flex;flex-direction:column}
+.story-img-right{flex:1;overflow:hidden;border-bottom:2px solid var(--ink);position:relative;min-height:280px}
+.story-right-bottom{padding:1.5rem;background:var(--ink)}
+.story-manifesto-btn{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--acid);display:block;text-decoration:none;margin-bottom:0.75rem}
+.story-note{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--stone);text-transform:uppercase;line-height:1.6}
+
+/* ARRIVALS */
+.arrivals-section{border-bottom:2px solid var(--ink)}
+.arrivals-header{display:flex;align-items:baseline;justify-content:space-between;padding:1.5rem 2rem;border-bottom:2px solid var(--ink);background:var(--warm)}
+.arrivals-header-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);letter-spacing:0.04em;color:var(--ink)}
+.arrivals-grid{display:grid;grid-template-columns:1fr 1fr 1fr}
+.arrival-card{border-right:2px solid var(--ink);position:relative;overflow:hidden;cursor:pointer}
+.arrival-card:last-child{border-right:none}
+.arrival-img{height:440px;overflow:hidden;position:relative;background:var(--bone)}
+.arrival-img img{object-position:top;transition:transform 0.6s ease}
+.arrival-card:hover .arrival-img img{transform:scale(1.05)}
+.arrival-illus{height:440px;background:var(--ink);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.arrival-info{padding:14px 16px;border-top:2px solid var(--ink);background:var(--chalk);display:flex;justify-content:space-between;align-items:center}
+
+/* SOCIAL */
+.social-section{border-bottom:2px solid var(--ink)}
+.social-header{background:var(--rust);padding:1.5rem 2rem;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:2rem}
+.social-header-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,5vw,64px);letter-spacing:0.04em;color:var(--chalk)}
+.social-header-sub{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;color:rgba(255,255,255,0.5);text-transform:uppercase}
+.social-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.social-cell{aspect-ratio:1;overflow:hidden;border-right:2px solid var(--ink);position:relative;cursor:pointer}
+.social-cell:last-child{border-right:none}
+.social-cell img{transition:transform 0.5s ease}
+.social-cell:hover img{transform:scale(1.08)}
+.social-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,14,0.7) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:12px}
+.social-tag{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.14em;text-transform:uppercase;color:var(--acid);margin-bottom:2px}
+.social-handle{font-family:'DM Mono',monospace;font-size:11px;color:#fff}
+.social-footer{padding:1rem 2rem;background:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.social-footer-txt{font-family:'Barlow Condensed',sans-serif;font-size:15px;color:var(--stone)}
+.social-footer-txt strong{color:var(--acid);font-weight:400}
+
+/* NEWSLETTER */
+.nl-section{background:var(--ink);border-bottom:2px solid var(--ink)}
+.nl-inner{display:grid;grid-template-columns:1fr 1fr}
+.nl-left{padding:3.5rem 3rem;border-right:2px solid #222}
+.nl-eyebrow{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;color:#333;text-transform:uppercase;margin-bottom:1rem}
+.nl-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,7vw,96px);line-height:0.88;letter-spacing:0.03em;color:var(--chalk);margin-bottom:1.5rem}
+.nl-big s{text-decoration:line-through;color:#2a2a2a}
+.nl-big .acid{color:var(--acid)}
+.nl-sub{font-size:15px;font-weight:300;color:#555;line-height:1.65;margin-bottom:2rem}
+.nl-form{display:flex;gap:0;border:2px solid #2a2a2a}
+.nl-input{flex:1;padding:12px 16px;background:#111;border:none;font-family:'DM Mono',monospace;font-size:12px;color:var(--chalk);outline:none}
+.nl-input::placeholder{color:#333}
+.nl-btn{padding:12px 24px;background:var(--acid);border:none;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.08em;color:var(--ink);cursor:pointer;white-space:nowrap;transition:background 0.15s}
+.nl-btn:hover{background:var(--chalk)}
+.nl-fine{font-family:'DM Mono',monospace;font-size:9px;color:#2a2a2a;letter-spacing:0.08em;margin-top:0.75rem}
+.nl-right{padding:3.5rem 3rem;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.nl-right-illus{flex:1;display:flex;align-items:center;justify-content:center}
+.nl-perks{display:grid;grid-template-columns:1fr 1fr;gap:1px;border:1px solid #1a1a1a;margin-top:2rem}
+.nl-perk{padding:1rem;border-right:1px solid #1a1a1a;border-bottom:1px solid #1a1a1a;background:#0a0a0a}
+.nl-perk:nth-child(2n){border-right:none}
+.nl-perk:nth-child(3),.nl-perk:nth-child(4){border-bottom:none}
+.nl-perk-title{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.06em;color:var(--acid);margin-bottom:2px}
+.nl-perk-body{font-family:'DM Mono',monospace;font-size:9px;color:#444;letter-spacing:0.08em;line-height:1.5}
+
+/* FOOTER */
+footer{border-top:none}
+.footer-marquee{background:var(--acid);border-bottom:2px solid var(--ink);overflow:hidden;padding:8px 0}
+.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-bottom:2px solid var(--ink)}
+.footer-col{padding:2rem;border-right:2px solid var(--ink)}
+.footer-col:last-child{border-right:none;background:var(--ink)}
+.footer-logo-big{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:0.06em;color:var(--ink);display:block;text-decoration:none;line-height:1;margin-bottom:0.5rem}
+.footer-tagline-big{font-size:14px;font-weight:300;color:var(--smoke);line-height:1.7;margin-bottom:1.5rem}
+.footer-socials{display:flex;gap:0}
+.footer-socials a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--smoke);text-decoration:none;padding:6px 12px;border:1px solid var(--stone);margin-right:-1px;transition:all 0.15s}
+.footer-socials a:hover{background:var(--ink);color:var(--acid);border-color:var(--ink)}
+.footer-col-dark .footer-col-h{color:var(--acid)}
+.footer-col-dark li a{color:var(--stone)}
+.footer-col-dark li a:hover{color:var(--chalk)}
+.footer-col-h{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;color:var(--ink);margin-bottom:1rem;display:block;border-bottom:1px solid var(--stone);padding-bottom:0.5rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{font-size:13px;font-weight:300;color:var(--smoke);text-decoration:none;transition:color 0.15s}
+.footer-col ul li a:hover{color:var(--ink)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:var(--ink)}
+.footer-copy{font-family:'DM Mono',monospace;font-size:10px;color:#333;letter-spacing:0.06em}
+.footer-legal{display:flex;gap:1.5rem}
+.footer-legal a{font-size:11px;color:#333;text-decoration:none;font-family:'DM Mono',monospace;letter-spacing:0.06em;transition:color 0.15s}
+.footer-legal a:hover{color:var(--chalk)}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal:nth-child(2){transition-delay:0.08s}
+.reveal:nth-child(3){transition-delay:0.16s}
+.reveal:nth-child(4){transition-delay:0.24s}
+
+@media(max-width:1000px){
+  .hero{grid-template-columns:1fr}.hero-right{border-top:2px solid var(--ink)}.hero-img-main{min-height:50vw}
+  .product-grid{grid-template-columns:1fr 1fr}.product-card:nth-child(2n){border-right:none}.product-card:nth-child(3){border-right:2px solid var(--ink)}
+  .story-section{grid-template-columns:1fr}.story-left,.story-right{display:none}
+  .arrivals-grid{grid-template-columns:1fr 1fr}
+  .nl-inner{grid-template-columns:1fr}.nl-right{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none}.product-grid{grid-template-columns:1fr}.arrivals-grid{grid-template-columns:1fr}.social-grid{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  <div class="announce-track">
+    <span>DROP 001 IS LIVE</span><span>·</span><span><s>12 PIECES</s> ↓ 9 LEFT</span><span>·</span><span>GLOBAL SHIPPING</span><span>·</span><span>WE SKIPPED THE DISCOURSE</span><span>·</span><span>JUST FASHION.</span><span>·</span>
+    <span>DROP 001 IS LIVE</span><span>·</span><span><s>12 PIECES</s> ↓ 9 LEFT</span><span>·</span><span>GLOBAL SHIPPING</span><span>·</span><span>WE SKIPPED THE DISCOURSE</span><span>·</span><span>JUST FASHION.</span><span>·</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">MUTE.</a>
+  <ul class="nav-links">
+    <li><a href="#collection" class="active">Drop</a></li>
+    <li><a href="#">Archive</a></li>
+    <li><a href="#">Objects</a></li>
+    <li><a href="#story">World</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#">Search</a>
+    <a href="#" class="nav-cart">Cart (0)</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span>SS26 — Collection 001</span>
+      <span>12 pieces. then stop.</span>
+    </div>
+    <div style="position:relative;flex:1;display:flex;align-items:center">
+      <h1 class="hero-h1">
+        <span class="strike">FAST</span><br>
+        <span class="strike">SLOW</span><br>
+        JUST<br>
+        <span class="green">FASH</span><br>
+        ION.
+      </h1>
+      <!-- SVG Illustration background -->
+      <div class="hero-illustration">
+        <svg width="420" height="420" viewBox="0 0 420 420" fill="none">
+          <ellipse cx="210" cy="60" rx="44" ry="50" stroke="#0e0e0e" stroke-width="3"/>
+          <path d="M100 130 Q210 100 320 130 L340 340 Q210 320 80 340 Z" stroke="#0e0e0e" stroke-width="3" fill="none"/>
+          <path d="M100 135 L60 350 L100 350 L135 210" stroke="#0e0e0e" stroke-width="2.5" fill="none"/>
+          <path d="M320 135 L360 350 L320 350 L285 210" stroke="#0e0e0e" stroke-width="2.5" fill="none"/>
+          <path d="M140 340 L120 420 L160 420 L210 375 L260 420 L300 420 L280 340 Z" stroke="#0e0e0e" stroke-width="3" fill="none"/>
+          <line x1="155" y1="130" x2="265" y2="130" stroke="#0e0e0e" stroke-width="1.5" stroke-dasharray="5 3"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-sub">we skipped the discourse. here are some very good clothes. no seasons. no collections. just drops.</p>
+      <div class="hero-ctas">
+        <a href="#collection" class="btn-acid">fine, show me →</a>
+        <a href="#story" class="btn-outline">ok but what is this</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-counter-badge">9 LEFT</div>
+    <div class="hero-img-main">
+      <img src="https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=900&q=85&fit=crop&crop=top" alt="MUTE. Drop 001 hero" loading="eager">
+      <div class="hero-img-tag">Drop 001 — Live Now</div>
+    </div>
+    <div class="hero-stat-strip">
+      <div class="stat-box">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Pieces only</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">001</div>
+        <div class="stat-label">Drop number</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Countries</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-div">
+  <div class="marquee-inner">
+    <span>JUST FASHION</span><span class="dot">✦</span>
+    <span>NO NOISE</span><span class="dot">✦</span>
+    <span>DROP 001</span><span class="dot">✦</span>
+    <span>WE MAKE LESS</span><span class="dot">✦</span>
+    <span>ON PURPOSE</span><span class="dot">✦</span>
+    <span>JUST FASHION</span><span class="dot">✦</span>
+    <span>NO NOISE</span><span class="dot">✦</span>
+    <span>DROP 001</span><span class="dot">✦</span>
+    <span>WE MAKE LESS</span><span class="dot">✦</span>
+    <span>ON PURPOSE</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+  <div class="col-header">
+    <div class="col-header-left">
+      <div class="big-label">THE<br>EDIT.</div>
+      <div class="col-meta">
+        <div>Drop 001 — SS26</div>
+        <div><s>12 pieces</s> → 9 remaining</div>
+        <div>Restocking: never.</div>
+      </div>
+    </div>
+    <div class="col-header-right">
+      <p style="font-size:15px;font-weight:300;color:var(--smoke);max-width:320px;line-height:1.65">(all of it, actually.) twelve things made carefully. priced without shame. no <s>premium</s> markup. just what it costs to make something good.</p>
+      <a href="#" class="btn-acid" style="align-self:flex-end">Shop all 12 →</a>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=700&q=82&fit=crop&crop=top" alt="relaxed straight jean" loading="lazy">
+        <div class="product-overlay"><div class="overlay-btn">Add It</div></div>
+        <div class="badge-idx">01</div>
+      </div>
+      <div class="product-info">
+        <span class="product-name-big">Relaxed Jean</span>
+        <span class="product-price-big">$98</span>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=700&q=82&fit=crop&crop=top" alt="box-fit crewneck" loading="lazy">
+        <div class="product-overlay"><div class="overlay-btn">Add It</div></div>
+        <div class="product-badge-wrap"><span class="badge badge-new">Just dropped</span></div>
+        <div class="badge-idx">02</div>
+      </div>
+      <div class="product-info">
+        <span class="product-name-big">Box Crewneck</span>
+        <span class="product-price-big">$72</span>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=700&q=82&fit=crop&crop=top" alt="merino tank" loading="lazy">
+        <div class="product-overlay"><div class="overlay-btn">Add It</div></div>
+        <div class="product-badge-wrap"><span class="badge badge-low">2 left</span></div>
+        <div class="badge-idx">03</div>
+      </div>
+      <div class="product-info">
+        <span class="product-name-big">Merino Tank</span>
+        <span class="product-price-big">$54</span>
+      </div>
+    </div>
+
+    <div class="product-card reveal product-card-wide">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=1000&q=82&fit=crop&crop=center" alt="oversized coach jacket" loading="lazy">
+        <div class="product-overlay"><div class="overlay-btn">Add It</div></div>
+        <div class="product-badge-wrap"><span class="badge badge-low">3 left</span></div>
+        <div class="badge-idx">04</div>
+      </div>
+      <div class="product-info">
+        <span class="product-name-big">Coach Jacket — Oversize</span>
+        <span class="product-price-big">$148</span>
+      </div>
+    </div>
+
+    <div class="product-card reveal">
+      <div class="product-img-wrap">
+        <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=82&fit=crop" alt="utility tote" loading="lazy">
+        <div class="product-overlay"><div class="overlay-btn">Add It</div></div>
+        <div class="badge-idx">05</div>
+      </div>
+      <div class="product-info">
+        <span class="product-name-big">Utility Tote</span>
+        <span class="product-price-big">$42</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ILLUSTRATION ROW -->
+<div class="illus-row">
+  <div class="illus-cell">
+    <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
+      <ellipse cx="40" cy="14" rx="12" ry="13" stroke="#0e0e0e" stroke-width="2"/>
+      <path d="M18 32 Q40 24 62 32 L66 90 Q40 84 14 90 Z" stroke="#0e0e0e" stroke-width="2" fill="none"/>
+      <path d="M18 34 L8 92 L22 92 L30 56" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
+      <path d="M62 34 L72 92 L58 92 L50 56" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
+      <path d="M26 90 L22 120 L36 120 L40 104 L44 120 L58 120 L54 90 Z" stroke="#0e0e0e" stroke-width="2" fill="none"/>
+    </svg>
+    <div class="illus-title">The Figure</div>
+    <div class="illus-caption">dressed simply</div>
+  </div>
+  <div class="illus-cell">
+    <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
+      <rect x="10" y="0" width="60" height="80" rx="2" stroke="#0e0e0e" stroke-width="2" fill="none"/>
+      <line x1="10" y1="30" x2="70" y2="30" stroke="#0e0e0e" stroke-width="1.5"/>
+      <line x1="40" y1="0" x2="40" y2="80" stroke="#0e0e0e" stroke-width="1"/>
+      <rect x="18" y="90" width="44" height="30" rx="1" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
+      <path d="M18 90 L10 80 L70 80 L62 90" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
+      <line x1="24" y1="100" x2="56" y2="100" stroke="#0e0e0e" stroke-width="1"/>
+      <line x1="24" y1="108" x2="46" y2="108" stroke="#0e0e0e" stroke-width="1"/>
+    </svg>
+    <div class="illus-title">The Garment</div>
+    <div class="illus-caption">made well</div>
+  </div>
+  <div class="illus-cell">
+    <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
+      <path d="M8 60 Q8 10 40 10 Q72 10 72 60 Q72 100 40 110 Q8 100 8 60Z" stroke="#0e0e0e" stroke-width="2" fill="none"/>
+      <path d="M8 60 Q40 50 72 60" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
+      <path d="M14 38 Q40 28 66 38" stroke="#0e0e0e" stroke-width="1" fill="none"/>
+      <path d="M14 82 Q40 92 66 82" stroke="#0e0e0e" stroke-width="1" fill="none"/>
+      <line x1="40" y1="10" x2="40" y2="110" stroke="#0e0e0e" stroke-width="1"/>
+    </svg>
+    <div class="illus-title">The World</div>
+    <div class="illus-caption">global shipping</div>
+  </div>
+  <div class="illus-cell" style="background:var(--ink)">
+    <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
+      <rect x="4" y="4" width="72" height="112" rx="2" stroke="#c8f542" stroke-width="2" fill="none"/>
+      <line x1="4" y1="30" x2="76" y2="30" stroke="#c8f542" stroke-width="1"/>
+      <text x="40" y="22" text-anchor="middle" font-family="'Bebas Neue'" font-size="14" fill="#c8f542">MUTE.</text>
+      <line x1="14" y1="50" x2="66" y2="50" stroke="#333" stroke-width="1"/>
+      <line x1="14" y1="62" x2="50" y2="62" stroke="#333" stroke-width="1"/>
+      <line x1="14" y1="74" x2="58" y2="74" stroke="#333" stroke-width="1"/>
+      <line x1="14" y1="86" x2="40" y2="86" stroke="#333" stroke-width="1"/>
+      <path d="M20 100 L40 110 L60 100" stroke="#c8f542" stroke-width="1.5" fill="none"/>
+    </svg>
+    <div class="illus-title" style="color:var(--acid)">The Drop</div>
+    <div class="illus-caption" style="color:var(--stone)">001 of ∞</div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="story-section" id="story">
+  <div class="story-left">
+    <div class="story-img-top">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=82&fit=crop" alt="atelier fabric detail" loading="lazy">
+    </div>
+    <div class="story-img-caption">Studio / Atelier — somewhere quiet</div>
+  </div>
+
+  <div class="story-mid">
+    <div class="story-watermark">WE<br>MAKE<br>LESS</div>
+    <div style="position:relative;z-index:1">
+      <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.18em;color:var(--smoke);text-transform:uppercase;margin-bottom:1.5rem">About MUTE.</p>
+      <h2 class="story-big">WE<br>MAKE<br><span class="italic">less.</span><br>ON<br>PURPOSE.</h2>
+      <p class="story-body-txt">MUTE. started because we were tired of owning things. so we made 12 pieces. good ones. then stopped.</p>
+      <p class="story-body-txt">no seasons. no collections. no <s>sustainability theatre</s>. just drops, when something's actually ready.</p>
+      <p class="story-body-txt">(you're welcome.)</p>
+      <a href="#" class="btn-acid" style="margin-top:1.5rem;display:inline-block">Read the manifesto. it's short. →</a>
+    </div>
+  </div>
+
+  <div class="story-right">
+    <div class="story-img-right">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600&q=82&fit=crop&crop=top" alt="model in minimal outfit" loading="lazy">
+    </div>
+    <div class="story-right-bottom">
+      <a href="#" class="story-manifesto-btn">Read Manifesto →</a>
+      <p class="story-note">Founded somewhere quiet.<br>Designed without a brief.<br>Shipped to anyone, anywhere.<br>No HQ. No showroom. No nonsense.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARRIVALS -->
+<section class="arrivals-section" id="arrivals">
+  <div class="arrivals-header">
+    <div>
+      <h2 class="arrivals-header-h">JUST DROPPED. <span style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--rust);">(don't sleep.)</span></h2>
+    </div>
+    <div style="text-align:right">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.14em;color:var(--smoke);text-transform:uppercase">Next drop</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.06em;color:var(--ink)">TBD.</div>
+    </div>
+  </div>
+  <div class="arrivals-grid">
+    <div class="arrival-card">
+      <div class="arrival-img">
+        <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=700&q=82&fit=crop&crop=top" alt="coach jacket" loading="lazy">
+        <div style="position:absolute;top:12px;left:12px"><span class="badge badge-new">Just dropped</span></div>
+      </div>
+      <div class="arrival-info">
+        <span class="product-name-big">Coach Jacket</span>
+        <span class="product-price-big">$148</span>
+      </div>
+    </div>
+
+    <!-- SVG ILLUSTRATION CARD -->
+    <div class="arrival-card" style="background:var(--ink);border-right:2px solid var(--ink)">
+      <div class="arrival-illus">
+        <!-- Large fashion illustration -->
+        <svg width="260" height="380" viewBox="0 0 260 380" fill="none">
+          <!-- Body -->
+          <ellipse cx="130" cy="42" rx="28" ry="30" stroke="#c8f542" stroke-width="2.5"/>
+          <!-- Jacket shape -->
+          <path d="M60 100 Q130 78 200 100 L212 260 Q130 248 48 260 Z" stroke="#c8f542" stroke-width="2.5" fill="none"/>
+          <!-- Lapels -->
+          <path d="M60 102 L90 150 L130 110 L170 150 L200 102" stroke="#c8f542" stroke-width="2" fill="none"/>
+          <!-- Left sleeve -->
+          <path d="M60 104 L24 230 L54 234 L72 160" stroke="#c8f542" stroke-width="2" fill="none"/>
+          <!-- Right sleeve -->
+          <path d="M200 104 L236 230 L206 234 L188 160" stroke="#c8f542" stroke-width="2" fill="none"/>
+          <!-- Pants -->
+          <path d="M80 260 L64 380 L108 380 L130 305 L152 380 L196 380 L180 260 Z" stroke="#c8f542" stroke-width="2.5" fill="none"/>
+          <!-- Pocket lines -->
+          <line x1="72" y1="180" x2="110" y2="184" stroke="#c8f542" stroke-width="1.5"/>
+          <line x1="150" y1="184" x2="188" y2="180" stroke="#c8f542" stroke-width="1.5"/>
+          <!-- Button row -->
+          <line x1="130" y1="115" x2="130" y2="255" stroke="#c8f542" stroke-width="1" stroke-dasharray="4 4"/>
+          <circle cx="130" cy="150" r="3" fill="#c8f542"/>
+          <circle cx="130" cy="175" r="3" fill="#c8f542"/>
+          <circle cx="130" cy="200" r="3" fill="#c8f542"/>
+          <!-- Label -->
+          <text x="130" y="22" text-anchor="middle" font-family="'Bebas Neue'" font-size="13" fill="#c8f542" letter-spacing="3">MUTE.</text>
+        </svg>
+        <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:0.18em;color:var(--stone)">TECHNICAL ILLUSTRATION</div>
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.12em;color:#333;margin-top:2px">Coach Jacket — SS26</div>
+        </div>
+      </div>
+      <div class="arrival-info" style="background:var(--ash,#1a1a1a);border-top:2px solid #222">
+        <span class="product-name-big" style="color:var(--acid)">Technical Draw</span>
+        <span class="product-price-big" style="color:var(--stone)">Drop 001</span>
+      </div>
+    </div>
+
+    <div class="arrival-card">
+      <div class="arrival-img">
+        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&q=82&fit=crop&crop=top" alt="utility tote" loading="lazy">
+        <div style="position:absolute;top:12px;left:12px"><span class="badge badge-low">3 left</span></div>
+      </div>
+      <div class="arrival-info">
+        <span class="product-name-big">Utility Tote</span>
+        <span class="product-price-big">$42</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL -->
+<section class="social-section">
+  <div class="social-header">
+    <h2 class="social-header-h">AS WORN BY ACTUAL PEOPLE</h2>
+    <span class="social-header-sub">@mute.studio on instagram + tiktok</span>
+  </div>
+  <div class="social-grid">
+    <div class="social-cell">
+      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=500&q=80&fit=crop" alt="@mute.studio" loading="lazy">
+      <div class="social-overlay"><div class="social-tag">brand</div><div class="social-handle">@mute.studio</div></div>
+    </div>
+    <div class="social-cell">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=80&fit=crop" alt="@k.ren.wears" loading="lazy">
+      <div class="social-overlay"><div class="social-tag">tagged</div><div class="social-handle">@k.ren.wears</div></div>
+    </div>
+    <div class="social-cell">
+      <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500&q=80&fit=crop" alt="@i-d" loading="lazy">
+      <div class="social-overlay"><div class="social-tag">press</div><div class="social-handle">@i-d</div></div>
+    </div>
+    <div class="social-cell">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80&fit=crop" alt="@zoe.nm" loading="lazy">
+      <div class="social-overlay"><div class="social-tag">tagged</div><div class="social-handle">@zoe.nm</div></div>
+    </div>
+  </div>
+  <div class="social-footer">
+    <p class="social-footer-txt">tag <strong>#wearingmute</strong> to be featured. or don't. we'll probably find it anyway.</p>
+    <a href="#" class="btn-outline" style="border-color:var(--stone);color:var(--stone)">Follow @mute.studio</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="nl-section">
+  <div class="nl-inner">
+    <div class="nl-left">
+      <div class="nl-eyebrow">Drop alerts — not a newsletter</div>
+      <h2 class="nl-big"><s>NEWSLETTER</s><br>DROP<br><span class="acid">ALERTS</span><br>ONLY.</h2>
+      <p class="nl-sub">we email when something drops. once. not a "community." not a "journey." just a heads up.</p>
+      <div class="nl-form">
+        <input class="nl-input" type="email" placeholder="your@email.com" id="nl-email">
+        <button class="nl-btn" onclick="handleNL()">IN.</button>
+      </div>
+      <p class="nl-fine" id="nl-msg">no spam. unsubscribe instantly. we mean it.</p>
+    </div>
+    <div class="nl-right">
+      <div class="nl-right-illus">
+        <!-- Fashion envelope / letter illustration -->
+        <svg width="220" height="200" viewBox="0 0 220 200" fill="none">
+          <rect x="10" y="40" width="200" height="140" rx="2" stroke="#c8f542" stroke-width="2.5"/>
+          <path d="M10 40 L110 110 L210 40" stroke="#c8f542" stroke-width="2" fill="none"/>
+          <path d="M10 180 L75 115" stroke="#333" stroke-width="1.5"/>
+          <path d="M210 180 L145 115" stroke="#333" stroke-width="1.5"/>
+          <text x="110" y="25" text-anchor="middle" font-family="'Bebas Neue'" font-size="20" fill="#c8f542" letter-spacing="6">MUTE.</text>
+          <rect x="148" y="8" width="52" height="28" rx="1" stroke="#333" stroke-width="1.5" fill="none"/>
+          <!-- Stamp illustration — tiny figure -->
+          <ellipse cx="174" cy="14" rx="5" ry="5.5" stroke="#c8f542" stroke-width="1"/>
+          <path d="M166 23 Q174 20 182 23 L183 32 Q174 31 165 32 Z" stroke="#c8f542" stroke-width="1" fill="none"/>
+          <!-- Address lines -->
+          <line x1="30" y1="80" x2="90" y2="80" stroke="#333" stroke-width="1"/>
+          <line x1="30" y1="90" x2="76" y2="90" stroke="#333" stroke-width="1"/>
+          <line x1="30" y1="100" x2="84" y2="100" stroke="#333" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="nl-perks">
+        <div class="nl-perk">
+          <div class="nl-perk-title">Early Access</div>
+          <div class="nl-perk-body">First look before anyone else. That's it.</div>
+        </div>
+        <div class="nl-perk">
+          <div class="nl-perk-title">No Noise</div>
+          <div class="nl-perk-body">One email per drop. We respect your inbox.</div>
+        </div>
+        <div class="nl-perk">
+          <div class="nl-perk-title">Drop Alerts</div>
+          <div class="nl-perk-body">When something's ready. Not before.</div>
+        </div>
+        <div class="nl-perk">
+          <div class="nl-perk-title">Nothing else</div>
+          <div class="nl-perk-body">Seriously. That's the whole thing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-marquee">
+    <div class="marquee-inner">
+      <span>MUTE.</span><span class="dot">✦</span>
+      <span>JUST FASHION</span><span class="dot">✦</span>
+      <span>DROP 001</span><span class="dot">✦</span>
+      <span>WE MAKE LESS</span><span class="dot">✦</span>
+      <span>ON PURPOSE</span><span class="dot">✦</span>
+      <span>YOU'RE WELCOME</span><span class="dot">✦</span>
+      <span>MUTE.</span><span class="dot">✦</span>
+      <span>JUST FASHION</span><span class="dot">✦</span>
+      <span>DROP 001</span><span class="dot">✦</span>
+      <span>WE MAKE LESS</span><span class="dot">✦</span>
+      <span>ON PURPOSE</span><span class="dot">✦</span>
+      <span>YOU'RE WELCOME</span><span class="dot">✦</span>
+    </div>
+  </div>
+  <div class="footer-top">
+    <div class="footer-col">
+      <a href="#" class="footer-logo-big">MUTE.</a>
+      <p class="footer-tagline-big">12 pieces.<br>made well.<br>that's the whole thing.</p>
+      <div class="footer-socials">
+        <a href="#">IG</a>
+        <a href="#">TK</a>
+        <a href="#">PI</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-h">Shop</span>
+      <ul>
+        <li><a href="#">Drop 001</a></li>
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Objects</a></li>
+        <li><a href="#">Gift cards</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <span class="footer-col-h">World</span>
+      <ul>
+        <li><a href="#">Manifesto</a></li>
+        <li><a href="#">Stockists</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-col-dark" style="background:var(--ink)">
+      <span class="footer-col-h" style="color:var(--acid);border-bottom-color:#222">Help</span>
+      <ul>
+        <li><a href="#" style="color:var(--stone)">Sizing</a></li>
+        <li><a href="#" style="color:var(--stone)">Shipping</a></li>
+        <li><a href="#" style="color:var(--stone)">Returns</a></li>
+        <li><a href="#" style="color:var(--stone)">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 MUTE. Studio. made somewhere. owned by no one interesting.</p>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Cookies</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = (e.clientX - 6) + 'px';
+  cursor.style.top = (e.clientY - 6) + 'px';
+});
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.style.transform = 'scale(3)');
+  el.addEventListener('mouseleave', () => cursor.style.transform = 'scale(1)');
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)} });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Newsletter
+function handleNL(){
+  const email = document.getElementById('nl-email');
+  const msg = document.getElementById('nl-msg');
+  const btn = document.querySelector('.nl-btn');
+  if(email.value && email.value.includes('@')){
+    email.style.display = 'none';
+    btn.textContent = 'DONE.';
+    btn.disabled = true;
+    msg.textContent = "you're in. next drop we'll hit you first.";
+    msg.style.color = '#c8f542';
+  } else {
+    email.style.borderColor = '#c8f542';
+    email.focus();
+  }
+}
+
+// Active nav
+window.addEventListener('scroll',()=>{
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const sections=[['collection','#collection'],['story','#story'],['arrivals','#arrivals']];
+  sections.forEach(([id,sel])=>{
+    const el=document.querySelector(sel);
+    if(el&&window.scrollY>=el.offsetTop-80)document.querySelector(`.nav-links a[href="${sel}"]`)?.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
